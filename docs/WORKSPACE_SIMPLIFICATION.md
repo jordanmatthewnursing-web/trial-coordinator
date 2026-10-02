@@ -1,0 +1,9 @@
+# Unified case workspace — September 30, 2026
+
+Jordan requested fewer steps and a demonstrably useful workflow. The former four-item primary navigation now has Worklist and Case workspace. Study/facility detail is expandable inside the case; the full study reference remains accessible from the sidebar. Review and Handoff are views within the same case shell, sharing selection, coverage, facility and save status. Download is available from review without entering a separate handoff page. Numbered page cues were removed.
+
+No required review observations were silently filled. Follow-up questions remain conditional. Source/facility invalidation, incomplete-coverage disclosure, fresh-source export and storage recovery are unchanged. Autosave is device-local; failure is visible. This remains a synthetic prototype, not a deployed clinical team system.
+
+Verification: TypeScript and production build pass; 29 application tests pass. Seven browser fault checks rerun against the new navigation pass. Synthetic full-workflow browser test covers case entry, inline facility, evidence, follow-up owner/date/answer, observation resolution, reload persistence, direct download contents, case-preserving handoff/review navigation and 390/320 overflow checks. Desktop and phone screenshots reviewed. Harnesses and evidence are in portfolio-program/qa/trial-workspace-flow.mjs, trial-unified-checks.json and trial-browser-faults.mjs (external local Playwright dependency). No physical-device or coordinator-validation claim.
+
+The main task can now complete through a case workspace without opening the protocol page or handoff view. This reduces required navigation for direct export; it does not establish measured time savings or clinical usefulness. Independent coordinator feedback remains outstanding.
