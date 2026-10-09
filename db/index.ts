@@ -11,3 +11,8 @@ export function getDb() {
 
   return drizzle(env.DB, { schema });
 }
+
+export function accountDatabase(): D1Database {
+  if (!env.DB) throw new Error('Account storage unavailable');
+  return env.DB;
+}

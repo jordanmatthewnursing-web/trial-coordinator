@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Trial Coordinator — Research Screening Workspace",
+  title: "Trial Coordinator — Studies & Next Actions",
   description:
-    "A source-grounded synthetic screening workspace for research-site coordinators, from protocol context to preliminary handoff.",
+    "A personal workspace for saving public clinical studies, tracking follow-up tasks, and exporting deadlines.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
