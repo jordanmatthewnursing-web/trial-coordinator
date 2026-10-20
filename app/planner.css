@@ -535,6 +535,24 @@
   padding-top: 28px;
   padding-bottom: 24px;
 }
+
+.study-review{margin-top:26px;border-top:2px solid #77866b;padding-top:24px;overflow-wrap:anywhere}
+.study-review-heading{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.study-review-heading>span{font-size:12px;white-space:nowrap}
+.study-review-heading .planner-kicker{margin-bottom:8px}
+.study-review-columns,.study-review-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.study-review-columns{font-size:11px;padding:14px 0;color:#617063}
+.study-review-row{margin:0;padding:16px 0;border-top:1px solid #cbd3c7;font-size:13px}
+.study-review-row dt{font-weight:600}.study-review-row dd{margin:0;white-space:pre-wrap}
+.study-review-row dd:last-child{color:#314e3d}
+.study-review-mobile-label{display:none}
+.study-review form{padding-top:16px}
+.study-review-option{display:flex;gap:10px;align-items:center;min-height:44px;margin-bottom:12px}
+.study-review-task{display:block;max-width:560px}
+.study-review-history{margin-top:24px;border-top:1px solid #cbd3c7;padding-top:16px;font-size:12px}
+.study-review-history article{border-top:1px solid #cbd3c7;padding:12px 0;overflow-wrap:anywhere}
+.study-review-history p{margin:4px 0}
+@media(max-width:600px){.study-review-columns{display:none}.study-review-row{grid-template-columns:1fr;gap:10px}.study-review-mobile-label{display:block;font-size:11px;color:#617063;margin-bottom:3px}.study-review-heading{align-items:start;gap:12px}.study-review-heading>span{padding-top:4px}}
 .planner-has-studies h1 {
   font-size: 44px;
   letter-spacing: -1.8px;

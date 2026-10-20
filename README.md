@@ -1,10 +1,16 @@
 # Trial Coordinator
 
+## October 20: review changes before accepting them
+
+Saved studies now support a before/after review of registry status, title, phase, contacts and facilities. **Check for updates** stages changes without replacing the saved record. Accept the update alone, or edit and approve a follow-up task. Pending reviews survive reload and backups; acceptance retains personal notes/tasks and records a bounded review history. Account changes remain drafts until **Save to account** succeeds.
+
+This is a deterministic workflow, not an AI agent. See [the implementation decisions and verification](docs/STUDY_CHANGE_REVIEW.md). Run `npm run test:review` for the change-review checks.
+
 ## October 3: personal study organizer
 
 The default route is now a usable, empty-by-default study/task workspace. Search real recruiting studies by condition/location or load any public NCT ID; save multiple studies; create/edit tasks with owners, notes and due dates; mark complete/reopen; filter overdue/completed work; archive/restore studies; refresh public metadata without dropping tasks; export dated open tasks as an all-day calendar file; back up and merge-restore a validated JSON workspace. Study notes save on blur. Calendar downloads do not send invitations or establish syncing.
 
-Storage is browser-local and explicitly labeled. No account, shared team editing, cross-device sync, EHR, participant intake or clinical eligibility system is implemented. Task owner is a text label, not an invitation. Clearing browser data loses local work unless backed up. This is useful for a person organizing public-study operations; it is not a complete clinical trial management system.
+Storage is browser-local by default, with an optional private account workspace at `/account`. Account saving is explicit and revision-protected; real cross-device user review remains open. Shared team editing, EHR integration, participant intake and clinical eligibility determination are not implemented. Task owner is a text label, not an invitation. Clearing browser data loses local work unless backed up. This is a personal organizer, not a complete clinical trial management system.
 
 The existing synthetic screening walkthrough has moved intact to `/demo`; its original browser storage key is preserved. The default screen has no invented assignments. Old descriptions below refer to that sample walkthrough.
 
@@ -13,7 +19,7 @@ New implementation: `components/StudyPlanner.tsx`, `lib/planner.ts`, `app/planne
 
 A designed research-site coordinator workspace for a **synthetic** preliminary screen. The public demo supports a path from protocol context to criterion review and handoff. It is a portfolio prototype, not a patient record system, local protocol authority, or eligibility determination tool.
 
-## Current experience
+## Screening example (`/demo`)
 
 - Opens on assigned demo work: one public study and three invented candidate scenarios.
 - Fetches the selected NCT record from ClinicalTrials.gov API v2, validates the fields used in review, and distinguishes study-wide recruitment from each listed facility's status. Malformed records are rejected; missing optional fields remain visibly unknown.

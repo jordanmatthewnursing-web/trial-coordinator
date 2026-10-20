@@ -53,8 +53,17 @@ export const savedSchema = z
     notes: z.string().max(6000),
     archived: z.boolean(),
     tasks: z.array(taskSchema).max(1000),
+    review: z.object({ record: plannerStudySchema, checkedAt: z.string().datetime() }).optional(),
+    reviewHistory: z.array(z.object({
+      checkedAt: z.string().datetime(),
+      reviewedAt: z.string().datetime(),
+      summary: z.string().max(2000),
+      taskId: z.string().max(100).optional(),
+    })).max(20).optional(),
   })
   .superRefine((s, ctx) => {
+    if (s.review && s.review.record.id !== s.study.id)
+      ctx.addIssue({ code: "custom", message: "Review belongs to another study" });
     if (new Set(s.tasks.map((t) => t.id)).size !== s.tasks.length)
       ctx.addIssue({ code: "custom", message: "Duplicate task IDs" });
   });

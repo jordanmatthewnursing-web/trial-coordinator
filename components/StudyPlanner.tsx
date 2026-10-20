@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState, useRef, type FormEvent } from "react";
+import StudyChangeReview from './StudyChangeReview';
+import { stageStudyReview, acceptStudyReview } from '@/lib/study-review';
 
 import {
   PLANNER_KEY,
@@ -278,37 +280,44 @@ export default function StudyPlanner({
   async function refresh() {
     if (!active) return;
     const id = active.study.id;
+    request.current?.abort();
+    const controller = new AbortController();
+    request.current = controller;
     setRefreshing(true);
     try {
       const r = await fetch(`/api/study/${id}?refresh=1`, {
         cache: "no-store",
+        signal: controller.signal,
       });
       if (!r.ok) throw Error();
       const next = plannerStudySchema.parse(await r.json());
-      const previous = active.study;
-      const parsed = savedSchema.safeParse({
-        ...active,
-        study: next,
-        checkedAt: new Date().toISOString(),
-      });
-      if (!parsed.success || parsed.data.study.id !== id) throw Error();
+      if (controller.signal.aborted || next.id !== id) throw Error();
+      const current = planRef.current.studies.find(s => s.study.id === id);
+      if (!current) return;
+      const staged = stageStudyReview(current, next, new Date().toISOString());
       update(
         id,
-        (s) => ({
-          ...s,
-          study: parsed.data.study,
-          checkedAt: parsed.data.checkedAt,
-        }),
-        previous.status !== next.status
-          ? `Registry status changed: ${display(previous.status)} → ${display(next.status)}. Your tasks are preserved.`
-          : "Registry checked. Your tasks and notes are preserved.",
+        () => staged,
+        staged.review
+          ? 'Registry changes are ready to review. Your saved record, tasks and notes are retained.'
+          : 'No changes to status, study details, facilities or contacts. Your tasks and notes are preserved.',
       );
     } catch {
-      setNotice(
+      if (!controller.signal.aborted) setNotice(
         "Could not refresh the registry. Your saved study and tasks remain available.",
       );
     } finally {
       setRefreshing(false);
+    }
+  }
+  function acceptReview(checkedAt: string, title: string | null) {
+    if (!active || !canEdit) return;
+    try {
+      update(active.study.id, current => acceptStudyReview(current, checkedAt,
+        title === null ? null : { title }, new Date().toISOString()),
+        title === null ? 'Registry update accepted. Tasks and notes retained.' : 'Registry update accepted. One follow-up task added.');
+    } catch (error) {
+      setNotice(error instanceof Error && error.name !== 'ZodError' ? error.message : 'Check the task title and workspace limits. Your saved record is retained.');
     }
   }
   async function restore(file: File) {
@@ -586,6 +595,7 @@ export default function StudyPlanner({
                 </span>
                 <strong>{s.study.title}</strong>
                 <small>
+                  {s.review ? 'Update to review · ' : ''}
                   {s.tasks.filter((t) => !t.done).length} open ·{" "}
                   {s.tasks.filter((t) => overdue(t)).length} overdue
                 </small>
@@ -608,7 +618,7 @@ export default function StudyPlanner({
                     Open registry ↗
                   </a>
                   <button disabled={!canEdit || refreshing} onClick={refresh}>
-                    {refreshing ? "Checking…" : "Refresh public record"}
+                    {refreshing ? "Checking…" : "Check for updates"}
                   </button>
                   <button
                     disabled={!canEdit}
@@ -631,6 +641,16 @@ export default function StudyPlanner({
                   . Public status is not site approval.
                 </p>
               </div>
+              <StudyChangeReview key={active.study.id + (active.review?.checkedAt || '')}
+                saved={active} disabled={!canEdit || refreshing} onAccept={acceptReview} />
+              {!!active.reviewHistory?.length && <details className="study-review-history">
+                <summary>Reviewed updates ({active.reviewHistory.length})</summary>
+                {active.reviewHistory.slice().reverse().map(receipt => <article key={receipt.checkedAt}>
+                  <p>Accepted {new Date(receipt.reviewedAt).toLocaleString()}</p>
+                  <p>{receipt.summary}</p>
+                  <p className="planner-small">Registry checked {new Date(receipt.checkedAt).toLocaleString()} · {receipt.taskId ? 'Follow-up task added' : 'No task added'}</p>
+                </article>)}
+              </details>}
               <section className="planner-task-section">
                 <div className="planner-task-heading">
                   <h3>Next actions</h3>
