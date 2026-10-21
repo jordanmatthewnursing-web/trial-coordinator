@@ -1,11 +1,11 @@
 {
-  "sourceCommit": "104396099f9f34d3047c5b99a3d0ca43d2c8af03",
+  "sourceCommit": "4996225a647e82f6e40bd9aaff21e896bfe0f35c",
   "status": "Public portfolio source snapshot; engineering evidence is not clinical validation",
   "files": [
     {
       "file": ".gitignore",
-      "sha256": "c775e249fb4d63abf8e70cc61d19cf73114e78265aca1e0bbf1680ef890115ca",
-      "bytes": 612
+      "sha256": "3639910e4c6c251fd8227627134207f3018ca8ae2b3482c285f3ee5ea19ec270",
+      "bytes": 716
     },
     {
       "file": ".next/types/routes.d.ts",
@@ -24,8 +24,8 @@
     },
     {
       "file": "README.md",
-      "sha256": "3c318ced8109c7d2021619c7c182700f878b70e0307ab00e45c9bc4ad4fd5f00",
-      "bytes": 8395
+      "sha256": "076f30fca4e62d751eeeb493985d83d6f35682fe7d1e565a3b920c71e717a8a9",
+      "bytes": 8995
     },
     {
       "file": "RELEASE_SETUP.md",
@@ -736,6 +736,36 @@
       "file": "components/UpdatesInbox.tsx",
       "sha256": "d03af708f7a2699539aef6702b1e94405264503dc6d65729f09c9c568bae1138",
       "bytes": 2192
+    },
+    {
+      "file": "docs/IMPLEMENTATION_EVIDENCE.md",
+      "sha256": "69b2e2e50f1e1abd98cbb945c145a0eeec64e6cd66f128255fa42da9c1e7a7ed",
+      "bytes": 2921
+    },
+    {
+      "file": "tools/workflow-evaluation/run.py",
+      "sha256": "4a45ae28a692bd76ac5a260ae6854e60cc575d969d4ed57dd68ec6ff4d575dde",
+      "bytes": 4330
+    },
+    {
+      "file": "tools/workflow-evaluation/README.md",
+      "sha256": "e7ae1b372010a0957765cfa1c60420e9807bfa79ffc54b44b87e00267c39df10",
+      "bytes": 2253
+    },
+    {
+      "file": "tools/workflow-evaluation/evaluate.mjs",
+      "sha256": "109bdce9366d123f607718a830547e4c871048384c76c8576735db09d2ce0ef6",
+      "bytes": 5095
+    },
+    {
+      "file": "tools/workflow-evaluation/account-lifecycle.test.mjs",
+      "sha256": "0a96614c35cbae6403ed080da871a508f5a640c850dcf574ae2b9aeb1f00646c",
+      "bytes": 4224
+    },
+    {
+      "file": "tools/workflow-evaluation/queries.sql",
+      "sha256": "41a3024327d871c9ac7115c39be8437176c0388f729b6acd7aa05e3bdb1c88c8",
+      "bytes": 686
     }
   ]
 }

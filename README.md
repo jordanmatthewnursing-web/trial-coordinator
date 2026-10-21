@@ -72,3 +72,7 @@ Verification: strict typecheck/build; seven prior planner tests and three real S
 ### Updates inbox (October 21)
 
 Pending reviews across non-archived saved studies appear above the workspace, oldest check first. Each row shows the actual changed fields and opens that study for review. Accepting its update removes it from the inbox. The inbox is derived from persisted review state, not a separate queue. Checks run on request; no background monitoring or AI summarization is claimed.
+
+### Reproducible review evaluation
+
+Run `python3 tools/workflow-evaluation/run.py` after installing project dependencies. The suite exercises the actual review and account-store functions with synthetic records, emits JSON, a local SQLite database, diagnostic SQL results and an HTML report, and verifies that a deliberately unsafe replacement control is detected. See [evaluation instructions](tools/workflow-evaluation/README.md) and [implementation notes](docs/IMPLEMENTATION_EVIDENCE.md). No API key or patient data is required. These checks are not production telemetry or clinical validation.

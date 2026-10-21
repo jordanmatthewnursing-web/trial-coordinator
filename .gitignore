@@ -45,3 +45,6 @@ next-env.d.ts
 /outputs/
 /work/
 *.tsbuildinfo
+
+# Generated synthetic evaluation reports and local SQLite databases
+/tools/workflow-evaluation/output/
