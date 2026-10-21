@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "d755f60c2e52c8c92aefa0a8b14f3f1920473791",
+  "sourceCommit": "104396099f9f34d3047c5b99a3d0ca43d2c8af03",
   "status": "Public portfolio source snapshot; engineering evidence is not clinical validation",
   "files": [
     {
@@ -24,8 +24,8 @@
     },
     {
       "file": "README.md",
-      "sha256": "8d4ca3044b1d3b533f317c524dec32d73612a76f08a67dc1bba93573244bc584",
-      "bytes": 7990
+      "sha256": "3c318ced8109c7d2021619c7c182700f878b70e0307ab00e45c9bc4ad4fd5f00",
+      "bytes": 8395
     },
     {
       "file": "RELEASE_SETUP.md",
@@ -79,8 +79,8 @@
     },
     {
       "file": "app/planner.css",
-      "sha256": "81b4afb21b0a1c12c7df3447eed4be05eb116575bd82e40368cd24b04867329c",
-      "bytes": 11936
+      "sha256": "f4b5ea36ecf4352169f02aa1ddc68eb54099f7532a5d025430349217938384d7",
+      "bytes": 13176
     },
     {
       "file": "assets/trial.png",
@@ -114,8 +114,8 @@
     },
     {
       "file": "components/StudyPlanner.tsx",
-      "sha256": "8d79224cd933a2c109f4d2a51342387fc4870c1aacaa9f457ed93fd89e7bcba8",
-      "bytes": 33771
+      "sha256": "dc6a4e6ea7ec19936992c782166904130ce36fd8213328dd365135d0a7a4977a",
+      "bytes": 33898
     },
     {
       "file": "components/ui/accordion.tsx",
@@ -731,6 +731,11 @@
       "file": "tests/study-review.test.mjs",
       "sha256": "e7f9d9d0c98f66b7ea7fe999bb62eb29d83dc62501b59525597a423d376354d6",
       "bytes": 3942
+    },
+    {
+      "file": "components/UpdatesInbox.tsx",
+      "sha256": "d03af708f7a2699539aef6702b1e94405264503dc6d65729f09c9c568bae1138",
+      "bytes": 2192
     }
   ]
 }

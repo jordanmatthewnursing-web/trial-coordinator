@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useRef, type FormEvent } from "react";
 import StudyChangeReview from './StudyChangeReview';
+import UpdatesInbox from './UpdatesInbox';
 import { stageStudyReview, acceptStudyReview } from '@/lib/study-review';
 
 import {
@@ -564,6 +565,7 @@ export default function StudyPlanner({
             <strong>{allTasks.filter((t) => overdue(t)).length}</strong> overdue
           </span>
         </section>
+        <UpdatesInbox studies={plan.studies} selected={selected} onSelect={pick} />
         <div className="planner-grid">
           <aside className="planner-studies">
             <div className="planner-list-heading">
